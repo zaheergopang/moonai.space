@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>TikTok Callback</h1>
+  <p>Authorization Code: <span id="code"></span></p>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    document.getElementById('code').innerText = code || 'No code received';
+  </script>
+</body>
+</html>
