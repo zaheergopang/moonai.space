@@ -5,120 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MoonAI Space</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100%;
-      font-family: Arial, sans-serif;
-      background: black;
-      color: white;
-    }
+    /* Base Reset */
+    html, body { margin: 0; padding: 0; overflow: hidden; height: 100%; font-family: 'Segoe UI', Tahoma, sans-serif; background: #0a0f2f; color: #e0e0e0; }
 
-    .door-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      z-index: 1000;
-    }
-
-    .door-half {
-      flex: 1;
-      background: black;
-      position: relative;
-      overflow: hidden;
-      transition: transform 1s ease-in-out;
-    }
-
-    .door-half::before {
-      content: "";
-      position: absolute;
-      width: 200%; height: 200%;
-      background: radial-gradient(white 1px, transparent 1px);
-      background-size: 3px 3px;
-      opacity: 0.4;
-      animation: twinkle 10s linear infinite;
-    }
-
-    .left-door  { border-right: 1px solid #222; }
-    .right-door { border-left: 1px solid #222; }
-
+    /* Door Container */
+    .door-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; z-index: 1000; }
+    .door-half { flex: 1; background: linear-gradient(135deg, #101533, #16204a); position: relative; overflow: hidden; transition: transform 2s cubic-bezier(0.4, 0.0, 0.2, 1); }
+    .door-half::before { content: ""; position: absolute; width: 200%; height: 200%; background: radial-gradient(#ffffff22 1px, transparent 2px); background-size: 4px 4px; opacity: 0.3; animation: twinkle 12s linear infinite; }
+    .left-door  { border-right: 1px solid #202b55; }
+    .right-door { border-left: 1px solid #202b55; }
     .door-open .left-door  { transform: translateX(-100%); }
     .door-open .right-door { transform: translateX(100%); }
 
-    @keyframes twinkle { 0% { transform: translate(0,0); } 100% { transform: translate(-50px,-50px); } }
+    @keyframes twinkle { 0% { transform: translate(0,0); } 100% { transform: translate(-60px,-60px); } }
 
-    /* Centered Moon Knob */
-    .moon-knob {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 300px; height: 300px;
-      margin: -150px 0 0 -150px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #f5f5f5, #bbb, #666);
-      box-shadow: 0 0 100px 30px rgba(255,255,255,0.5);
-      animation: spinMoon 5s linear infinite;
-      z-index: 10;
-      transition: transform 2s ease, opacity 2s ease;
-    }
-
-    .door-open .moon-knob {
-      transform: scale(0.5) rotate(90deg);
-      opacity: 0;
-    }
-
-    @keyframes spinMoon {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
+    /* Moon Knob */
+    .moon-knob { position: absolute; top: 50%; left: 50%; width: 300px; height: 300px; margin: -150px 0 0 -150px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #f0f0f0, #b5b5b5 60%, #888888); box-shadow: 0 0 120px 40px rgba(240,240,240,0.4), inset 0 -10px 20px rgba(0,0,0,0.2); animation: spinMoon 8s linear infinite; transition: transform 2s ease, opacity 2s ease; }
+    .door-open .moon-knob { transform: scale(0.4) rotate(90deg); opacity: 0; }
+    @keyframes spinMoon { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     /* Content Reveal */
-    .content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 100px 20px;
-      opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 1.5s ease 2s, transform 1.5s ease 2s;
-    }
-    .content.show { opacity: 1; transform: scale(1); }
+    .content { position: relative; z-index: 1; text-align: center; padding: 120px 20px; opacity: 0; transform: translateY(20px); transition: opacity 1s ease 2s, transform 1s ease 2s; }
+    .content.show { opacity: 1; transform: translateY(0); }
+    .content h1 { font-size: 3rem; margin-bottom: 0.5em; color: #61dafb; }
+    .content p { font-size: 1.125rem; line-height: 1.6; }
+    .content a { color: #61dafb; text-decoration: none; padding: 4px 8px; border: 1px solid #61dafb; border-radius: 4px; margin: 0 4px; transition: background 0.3s; }
+    .content a:hover { background: #61dafb22; }
 
-    /* Round Saucer Spaceship */
-    .spaceship {
-      position: fixed;
-      width: 80px;
-      height: 40px;
-      background: #444;
-      border-radius: 50% / 60% 60% 40% 40%;
-      box-shadow:
-        inset 0 4px 10px rgba(255,255,255,0.2),
-        0 0 8px rgba(255,255,255,0.3);
-      opacity: 0;
-      transition: opacity 1s ease;
-      z-index: 5;
-      transform: rotate(180deg);
-      transform-origin: center;
-      top: 100px;
-      left: 100px;
-    }
-    .spaceship.show {
-      opacity: 1;
-    }
-    .spaceship::before {
-      content: "";
-      position: absolute;
-      top: -12px; left: 20px;
-      width: 40px; height: 20px;
-      background: rgba(200,200,255,0.7);
-      border-radius: 50%;
-    }
+    /* Saucer Spaceship */
+    .spaceship { position: fixed; width: 80px; height: 40px; background: linear-gradient(135deg, #556, #334); border-radius: 50% / 60% 60% 40% 40%; box-shadow: inset 0 4px 12px rgba(255,255,255,0.15), 0 0 10px rgba(255,255,255,0.2); opacity: 0; transition: opacity 1s ease; z-index: 5; transform: rotate(180deg); transform-origin: center; }
+    .spaceship::before { content: ""; position: absolute; top: -12px; left: 20px; width: 40px; height: 20px; background: rgba(200,200,255,0.6); border-radius: 50%; }
     .spaceship.show { opacity: 1; }
-
-    a { color: #0ff; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -131,18 +48,16 @@
   <div class="content" id="content">
     <h1>Welcome to MoonAI Space</h1>
     <p>This is the official website for MoonAI, hosting content for video automation projects.</p>
-    <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+    <p><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-service.html">Terms of Service</a></p>
   </div>
 
   <div class="spaceship" id="spaceship"></div>
 
   <script>
     window.onload = () => {
-      // door opens after 2s
       setTimeout(() => {
         document.getElementById('doorContainer').classList.add('door-open');
         document.getElementById('content').classList.add('show');
-        // spaceship appears after header > 1s
         setTimeout(() => {
           const ship = document.getElementById('spaceship');
           ship.classList.add('show');
@@ -153,8 +68,7 @@
             x += dx; y += dy;
             if (x <= 0 || x >= maxW) dx = -dx;
             if (y <= 0 || y >= maxH) dy = -dy;
-            ship.style.left = x + 'px';
-            ship.style.top = y + 'px';
+            ship.style.left = x + 'px'; ship.style.top = y + 'px';
             requestAnimationFrame(move);
           }
           move();
