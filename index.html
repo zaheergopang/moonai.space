@@ -9,7 +9,8 @@
     html, body { margin: 0; padding: 0; overflow: hidden; height: 100%; font-family: 'Segoe UI', Tahoma, sans-serif; background: #0a0f2f; color: #e0e0e0; }
 
     /* Door Container */
-    .door-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; z-index: 1000; }
+    .door-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; z-index: 1000; transition: pointer-events 0.5s ease; }
+    .door-container.door-open { pointer-events: none; }
     .door-half { flex: 1; background: linear-gradient(135deg, #101533, #16204a); position: relative; overflow: hidden; transition: transform 2s cubic-bezier(0.4, 0.0, 0.2, 1); }
     .door-half::before { content: ""; position: absolute; width: 200%; height: 200%; background: radial-gradient(#ffffff22 1px, transparent 2px); background-size: 4px 4px; opacity: 0.3; animation: twinkle 12s linear infinite; }
     .left-door  { border-right: 1px solid #202b55; }
@@ -56,8 +57,14 @@
   <script>
     window.onload = () => {
       setTimeout(() => {
-        document.getElementById('doorContainer').classList.add('door-open');
+        const door = document.getElementById('doorContainer');
+        door.classList.add('door-open');
         document.getElementById('content').classList.add('show');
+        // After doors open, disable pointer events on door container so links become clickable
+        setTimeout(() => {
+          door.style.pointerEvents = 'none';
+        }, 2500);
+
         setTimeout(() => {
           const ship = document.getElementById('spaceship');
           ship.classList.add('show');
