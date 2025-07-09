@@ -2,86 +2,145 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MoonAI Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoonAI Space - AI Automation for Digital Creators</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    /* CSS Variables */
+    :root {
+      --primary: #61dafb;
+      --accent: #ff6a8e;
+      --bg-dark: #0a0f2f;
+      --bg-light: #1b1f3b;
+      --text-light: #e0e0e0;
+      --text-dark: #ffffff;
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
     /* Base Reset */
-    html, body { margin: 0; padding: 0; overflow: hidden; height: 100%; font-family: 'Segoe UI', Tahoma, sans-serif; background: #0a0f2f; color: #e0e0e0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-light); scroll-behavior: smooth; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
 
-    /* Door Container */
-    .door-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; z-index: 1000; transition: pointer-events 0.5s ease; }
-    .door-container.door-open { pointer-events: none; }
-    .door-half { flex: 1; background: linear-gradient(135deg, #101533, #16204a); position: relative; overflow: hidden; transition: transform 2s cubic-bezier(0.4, 0.0, 0.2, 1); }
-    .door-half::before { content: ""; position: absolute; width: 200%; height: 200%; background: radial-gradient(#ffffff22 1px, transparent 2px); background-size: 4px 4px; opacity: 0.3; animation: twinkle 12s linear infinite; }
-    .left-door  { border-right: 1px solid #202b55; }
-    .right-door { border-left: 1px solid #202b55; }
-    .door-open .left-door  { transform: translateX(-100%); }
-    .door-open .right-door { transform: translateX(100%); }
+    /* Header */
+    header { position: fixed; width: 100%; top: 0; left: 0; background: rgba(10,15,47,0.8); backdrop-filter: blur(10px); z-index: 100; }
+    .nav-container { max-width: 1200px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem; }
+    .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); }
+    nav ul { display: flex; gap: 1.5rem; }
+    nav a { font-weight: 500; transition: color var(--transition); }
+    nav a:hover { color: var(--accent); }
 
-    @keyframes twinkle { 0% { transform: translate(0,0); } 100% { transform: translate(-60px,-60px); } }
+    /* Hero Section */
+    .hero { display: flex; align-items: center; justify-content: center; text-align: center; height: 100vh; background: linear-gradient(135deg, #101533 0%, #16204a 100%); position: relative; }
+    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(97,218,251,0.1), transparent 70%); animation: rotateBG 20s linear infinite; }
+    @keyframes rotateBG { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 1rem; }
+    .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 1rem; color: var(--primary); }
+    .hero p { font-size: 1.125rem; margin-bottom: 2rem; line-height: 1.6; }
+    .btn { display: inline-block; padding: 0.75rem 1.75rem; font-weight: 600; border-radius: var(--radius); border: 2px solid var(--primary); transition: all var(--transition); }
+    .btn-primary { background: var(--primary); color: var(--bg-dark); }
+    .btn-outline { background: transparent; color: var(--primary); }
+    .btn-primary:hover { background: transparent; color: var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: var(--bg-dark); }
 
-    /* Moon Knob */
-    .moon-knob { position: absolute; top: 50%; left: 50%; width: 300px; height: 300px; margin: -150px 0 0 -150px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #f0f0f0, #b5b5b5 60%, #888888); box-shadow: 0 0 120px 40px rgba(240,240,240,0.4), inset 0 -10px 20px rgba(0,0,0,0.2); animation: spinMoon 8s linear infinite; transition: transform 2s ease, opacity 2s ease; }
-    .door-open .moon-knob { transform: scale(0.4) rotate(90deg); opacity: 0; }
-    @keyframes spinMoon { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    /* Sections */
+    section { padding: 4rem 1rem; max-width: 1200px; margin: auto; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card { background: var(--bg-light); padding: 2rem; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: transform var(--transition); }
+    .card:hover { transform: translateY(-8px); }
+    .card h3 { margin-bottom: 1rem; color: var(--accent); }
+    .card p { font-size: 0.95rem; line-height: 1.5; }
 
-    /* Content Reveal */
-    .content { position: relative; z-index: 1; text-align: center; padding: 120px 20px; opacity: 0; transform: translateY(20px); transition: opacity 1s ease 2s, transform 1s ease 2s; }
-    .content.show { opacity: 1; transform: translateY(0); }
-    .content h1 { font-size: 3rem; margin-bottom: 0.5em; color: #61dafb; }
-    .content p { font-size: 1.125rem; line-height: 1.6; }
-    .content a { color: #61dafb; text-decoration: none; padding: 4px 8px; border: 1px solid #61dafb; border-radius: 4px; margin: 0 4px; transition: background 0.3s; }
-    .content a:hover { background: #61dafb22; }
+    /* Footer */
+    footer { background: var(--bg-light); text-align: center; padding: 2rem 1rem; margin-top: 4rem; }
+    footer p { font-size: 0.9rem; }
+    footer a { color: var(--primary); }
 
-    /* Saucer Spaceship */
-    .spaceship { position: fixed; width: 80px; height: 40px; background: linear-gradient(135deg, #556, #334); border-radius: 50% / 60% 60% 40% 40%; box-shadow: inset 0 4px 12px rgba(255,255,255,0.15), 0 0 10px rgba(255,255,255,0.2); opacity: 0; transition: opacity 1s ease; z-index: 5; transform: rotate(180deg); transform-origin: center; }
-    .spaceship::before { content: ""; position: absolute; top: -12px; left: 20px; width: 40px; height: 20px; background: rgba(200,200,255,0.6); border-radius: 50%; }
-    .spaceship.show { opacity: 1; }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.25rem; }
+    }
   </style>
 </head>
 <body>
-  <div class="door-container" id="doorContainer">
-    <div class="door-half left-door"></div>
-    <div class="door-half right-door"></div>
-    <div class="moon-knob" id="moonKnob"></div>
-  </div>
+  <header>
+    <div class="nav-container">
+      <div class="logo">MoonAI Space</div>
+      <nav>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#marketplace">Marketplace</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <div class="content" id="content">
-    <h1>Welcome to MoonAI Space</h1>
-    <p>This is the official website for MoonAI, hosting content for video automation projects.</p>
-    <p><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-service.html">Terms of Service</a></p>
-  </div>
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Automate Your Content,<br> Amplify Your Reach</h1>
+        <p>Discover plug-and-play n8n + AI workflows built for digital creators. Uploads, SEO, thumbnails & more—fully automated.</p>
+        <a href="#marketplace" class="btn btn-primary">Browse Marketplace</a>
+        <a href="#features" class="btn btn-outline">Explore Features</a>
+      </div>
+    </section>
 
-  <div class="spaceship" id="spaceship"></div>
+    <!-- Features -->
+    <section id="features">
+      <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:2rem;">Core Workflows</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Auto Upload</h3>
+          <p>Seamlessly schedule and publish videos with dynamic titles, descriptions, and tags via n8n triggers.</p>
+        </div>
+        <div class="card">
+          <h3>Voice-Over Slideshows</h3>
+          <p>Generate slide-based videos with AI voice narration—no manual editing needed.</p>
+        </div>
+        <div class="card">
+          <h3>SEO Optimizer</h3>
+          <p>Auto-analyze and update metadata for maximum discoverability using AI insights.</p>
+        </div>
+        <div class="card">
+          <h3>Analytics Alerts</h3>
+          <p>Get real-time performance summaries and recommendations sent to your inbox.</p>
+        </div>
+      </div>
+    </section>
 
-  <script>
-    window.onload = () => {
-      setTimeout(() => {
-        const door = document.getElementById('doorContainer');
-        door.classList.add('door-open');
-        document.getElementById('content').classList.add('show');
-        // After doors open, disable pointer events on door container so links become clickable
-        setTimeout(() => {
-          door.style.pointerEvents = 'none';
-        }, 2500);
+    <!-- Marketplace -->
+    <section id="marketplace">
+      <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:2rem;">Workflow Marketplace</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Starter Pack</h3>
+          <p>5 beginner-friendly workflows to kickstart your channel automation.<br><strong>$19</strong></p>
+        </div>
+        <div class="card">
+          <h3>Pro Bundle</h3>
+          <p>15 advanced workflows including SEO, analytics, and voiceovers.<br><strong>$49</strong></p>
+        </div>
+        <div class="card">
+          <h3>Enterprise Suite</h3>
+          <p>Full library + custom integrations + priority support.<br><strong>$99</strong></p>
+        </div>
+      </div>
+    </section>
 
-        setTimeout(() => {
-          const ship = document.getElementById('spaceship');
-          ship.classList.add('show');
-          let x = 100, y = 100, dx = 2.5, dy = 2.5;
-          function move() {
-            const maxW = window.innerWidth - ship.offsetWidth;
-            const maxH = window.innerHeight - ship.offsetHeight;
-            x += dx; y += dy;
-            if (x <= 0 || x >= maxW) dx = -dx;
-            if (y <= 0 || y >= maxH) dy = -dy;
-            ship.style.left = x + 'px'; ship.style.top = y + 'px';
-            requestAnimationFrame(move);
-          }
-          move();
-        }, 1000);
-      }, 2000);
-    };
-  </script>
+    <!-- Contact -->
+    <section id="contact">
+      <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:1rem;">Get in Touch</h2>
+      <p style="text-align:center; max-width:600px; margin: auto;">Questions, custom requests, or just say hello—reach out via email or GitHub.</p>
+      <p style="text-align:center; margin-top:1rem;"><a href="mailto:hello@moonaispace.com" class="btn btn-outline">Email Us</a> <a href="https://github.com/yourusername" target="_blank" class="btn btn-outline">GitHub</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MoonAI Space. All rights reserved. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+  </footer>
 </body>
 </html>
