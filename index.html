@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #61dafb;
-      --accent: #ff6a8e;
+      --primary: #4fc3f7;
+      --accent: #ff4081;
       --bg-dark: #0a0f2f;
       --bg-light: #1b1f3b;
       --text-light: #e0e0e0;
@@ -20,7 +20,6 @@
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    /* Header */
     header { position: fixed; width: 100%; top: 0; left: 0; background: rgba(10,15,47,0.8); backdrop-filter: blur(10px); z-index: 100; }
     .nav-container { max-width: 1200px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem; }
     .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); }
@@ -28,9 +27,8 @@
     nav a { font-weight: 500; transition: color var(--transition); }
     nav a:hover { color: var(--accent); }
 
-    /* Hero Section */
     .hero { display: flex; align-items: center; justify-content: center; text-align: center; height: 100vh; background: linear-gradient(135deg, #101533, #16204a); position: relative; }
-    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(97,218,251,0.1), transparent 70%); animation: rotateBG 20s linear infinite; }
+    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(79,195,247,0.1), transparent 70%); animation: rotateBG 20s linear infinite; }
     @keyframes rotateBG { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 1rem; }
     .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 1rem; color: var(--primary); }
@@ -41,7 +39,6 @@
     .btn-primary:hover { background: transparent; color: var(--primary); }
     .btn-outline:hover { background: var(--primary); color: var(--bg-dark); }
 
-    /* Sections */
     section { padding: 4rem 1rem; max-width: 1200px; margin: auto; }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .card { background: var(--bg-light); padding: 2rem; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: transform var(--transition); }
@@ -49,16 +46,10 @@
     .card h3 { margin-bottom: 1rem; color: var(--accent); }
     .card p { font-size: 0.95rem; line-height: 1.5; }
 
-    /* Footer */
     footer { background: var(--bg-light); text-align: center; padding: 2rem 1rem; margin-top: 4rem; }
     footer p { font-size: 0.9rem; }
     footer a { color: var(--primary); }
 
-    /* Note under download */
-    .note { margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-light); }
-    .note a { color: var(--primary); }
-
-    /* Responsive */
     @media (max-width: 600px) { .hero h1 { font-size: 2.25rem; } }
   </style>
 </head>
@@ -77,84 +68,73 @@
   </header>
 
   <main>
-    <!-- Hero -->
     <section class="hero" id="home">
       <div class="hero-content">
         <h1>Automate Your Content,<br> Amplify Your Reach</h1>
-        <p>Discover plug-and-play n8n + AI workflows built for digital creators. Uploads, SEO, thumbnails & more—fully automated.</p>
-        <a href="downloads/workflow.zip" class="btn btn-primary" download>
-          📥 Download Free “3 n8n YouTube Workflows” (ZIP)
-        </a>
-        <p class="note">
-          <strong>Note:</strong> This ZIP is password-protected. Email us to get the password → 
-          <a href="mailto:zaheergopang123.bz@gmail.com">zaheergopang123.bz@gmail.com</a>
-        </p>
+        <p>Plug-and-play n8n + AI workflows built for digital creators. Uploads, SEO, thumbnails & more—fully automated.</p>
+        <a href="downloads/workflow.zip" class="btn btn-primary" download>📥 Download Free “3 n8n YouTube Workflows”</a>
+        <p style="margin-top:1rem; font-size:0.95rem; color:#aaa;">To get the password to open the ZIP file, <a href="mailto:zaheergopang123.bz@gmail.com" style="color:var(--primary); text-decoration:underline;">email us</a>.</p>
         <a href="#marketplace" class="btn btn-outline">Browse Marketplace</a>
         <a href="#features" class="btn btn-outline">Explore Features</a>
       </div>
     </section>
 
-    <!-- Features -->
     <section id="features">
       <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:2rem;">Core Workflows</h2>
       <div class="cards">
         <div class="card">
           <h3>Auto Upload</h3>
-          <p>Seamlessly schedule and publish videos with dynamic titles, descriptions, and tags via n8n triggers.</p>
+          <p>Schedule & publish videos with dynamic titles, descriptions, and tags using n8n triggers.</p>
         </div>
         <div class="card">
-          <h3>Voice-Over Slideshows</h3>
-          <p>Generate slide-based videos with AI voice narration—no manual editing needed.</p>
+          <h3>AI Thumbnails</h3>
+          <p>Auto-generate engaging thumbnails using AI image tools, saving hours of design work.</p>
         </div>
         <div class="card">
           <h3>SEO Optimizer</h3>
-          <p>Auto-analyze and update metadata for maximum discoverability using AI insights.</p>
+          <p>Analyze and update metadata for better discoverability with AI insights.</p>
+        </div>
+        <div class="card">
+          <h3>Voice-Over Slideshows</h3>
+          <p>Create slide-based videos with AI voice narration—no manual editing needed.</p>
         </div>
         <div class="card">
           <h3>Analytics Alerts</h3>
-          <p>Get real-time performance summaries and recommendations sent to your inbox.</p>
+          <p>Receive real-time performance summaries and recommendations by email.</p>
         </div>
       </div>
     </section>
 
-    <!-- Marketplace -->
     <section id="marketplace">
       <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:2rem;">Workflow Marketplace</h2>
       <div class="cards">
         <div class="card">
           <h3>Starter Pack</h3>
-          <p>5 beginner-friendly workflows to kickstart your channel automation.<br><strong>$19</strong></p>
+          <p>3 beginner-friendly workflows: auto upload, AI thumbnails, analytics alerts.<br><strong>$19</strong></p>
         </div>
         <div class="card">
           <h3>Pro Bundle</h3>
-          <p>15 advanced workflows including SEO, analytics, and voiceovers.<br><strong>$49</strong></p>
+          <p>7 advanced workflows: Starter + SEO optimizer, voice-over slideshow, auto transcripts, multi-platform scheduler.<br><strong>$49</strong></p>
         </div>
         <div class="card">
           <h3>Enterprise Suite</h3>
-          <p>Full library + custom integrations + priority support.<br><strong>$99</strong></p>
+          <p>All Pro workflows + 3 custom workflows tailored to your needs + priority support & updates.<br><strong>$99</strong></p>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
       <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:1rem;">Get in Touch</h2>
-      <p style="text-align:center; max-width:600px; margin: auto;">
-        Questions, custom requests, or need the ZIP password? <strong>Email us:</strong> 
-        <a href="mailto:zaheergopang123.bz@gmail.com" style="color:var(--primary);">zaheergopang123.bz@gmail.com</a>
-      </p>
+      <p style="text-align:center; max-width:600px; margin: auto;">Questions, custom requests, or want the ZIP password? Reach out anytime.</p>
       <p style="text-align:center; margin-top:1rem;">
-        <a href="mailto:zaheergopang123.bz@gmail.com" class="btn btn-outline">Email Us</a> 
+        <a href="mailto:zaheergopang123.bz@gmail.com" class="btn btn-outline">Email Us</a>
         <a href="https://github.com/zaheergopang/moonai.space" target="_blank" class="btn btn-outline">GitHub</a>
       </p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 MoonAI Space. All rights reserved. 
-      <a href="privacy-policy.html">Privacy Policy</a> | 
-      <a href="terms-of-service.html">Terms of Service</a>
-    </p>
+    <p>&copy; 2025 MoonAI Space. All rights reserved. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
   </footer>
 </body>
 </html>
