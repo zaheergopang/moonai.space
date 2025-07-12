@@ -19,12 +19,16 @@
     html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-light); scroll-behavior: smooth; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
+
+    /* Header */
     header { position: fixed; width: 100%; top: 0; left: 0; background: rgba(10,15,47,0.8); backdrop-filter: blur(10px); z-index: 100; }
     .nav-container { max-width: 1200px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem; }
     .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary); }
     nav ul { display: flex; gap: 1.5rem; }
     nav a { font-weight: 500; transition: color var(--transition); }
     nav a:hover { color: var(--accent); }
+
+    /* Hero Section */
     .hero { display: flex; align-items: center; justify-content: center; text-align: center; height: 100vh; background: linear-gradient(135deg, #101533, #16204a); position: relative; }
     .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(97,218,251,0.1), transparent 70%); animation: rotateBG 20s linear infinite; }
     @keyframes rotateBG { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -36,15 +40,21 @@
     .btn-outline { background: transparent; color: var(--primary); }
     .btn-primary:hover { background: transparent; color: var(--primary); }
     .btn-outline:hover { background: var(--primary); color: var(--bg-dark); }
+
+    /* Sections */
     section { padding: 4rem 1rem; max-width: 1200px; margin: auto; }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .card { background: var(--bg-light); padding: 2rem; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: transform var(--transition); }
     .card:hover { transform: translateY(-8px); }
     .card h3 { margin-bottom: 1rem; color: var(--accent); }
     .card p { font-size: 0.95rem; line-height: 1.5; }
+
+    /* Footer */
     footer { background: var(--bg-light); text-align: center; padding: 2rem 1rem; margin-top: 4rem; }
     footer p { font-size: 0.9rem; }
     footer a { color: var(--primary); }
+
+    /* Responsive */
     @media (max-width: 600px) { .hero h1 { font-size: 2.25rem; } }
   </style>
 </head>
@@ -61,20 +71,71 @@
       </nav>
     </div>
   </header>
+
   <main>
+    <!-- Hero -->
     <section class="hero" id="home">
       <div class="hero-content">
         <h1>Automate Your Content,<br> Amplify Your Reach</h1>
         <p>Discover plug-and-play n8n + AI workflows built for digital creators. Uploads, SEO, thumbnails & more—fully automated.</p>
-        <a href="downloads/workflows.zip" class="btn btn-primary" download>📥 Download Free “3 n8n YouTube Workflows” (ZIP)</a>
+        <a href="downloads/workflow.zip" class="btn btn-primary" download>📥 Download Free “3 n8n YouTube Workflows” (ZIP)</a>
         <a href="#marketplace" class="btn btn-outline">Browse Marketplace</a>
         <a href="#features" class="btn btn-outline">Explore Features</a>
       </div>
     </section>
-    <!-- Keep your other sections (features, marketplace, contact) here -->
-    <footer>
-      <p>&copy; 2025 MoonAI Space. All rights reserved. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
-    </footer>
+
+    <!-- Features -->
+    <section id="features">
+      <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:2rem;">Core Workflows</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Auto Upload</h3>
+          <p>Seamlessly schedule and publish videos with dynamic titles, descriptions, and tags via n8n triggers.</p>
+        </div>
+        <div class="card">
+          <h3>Voice-Over Slideshows</h3>
+          <p>Generate slide-based videos with AI voice narration—no manual editing needed.</p>
+        </div>
+        <div class="card">
+          <h3>SEO Optimizer</h3>
+          <p>Auto-analyze and update metadata for maximum discoverability using AI insights.</p>
+        </div>
+        <div class="card">
+          <h3>Analytics Alerts</h3>
+          <p>Get real-time performance summaries and recommendations sent to your inbox.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketplace -->
+    <section id="marketplace">
+      <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:2rem;">Workflow Marketplace</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Starter Pack</h3>
+          <p>5 beginner-friendly workflows to kickstart your channel automation.<br><strong>$19</strong></p>
+        </div>
+        <div class="card">
+          <h3>Pro Bundle</h3>
+          <p>15 advanced workflows including SEO, analytics, and voiceovers.<br><strong>$49</strong></p>
+        </div>
+        <div class="card">
+          <h3>Enterprise Suite</h3>
+          <p>Full library + custom integrations + priority support.<br><strong>$99</strong></p>
+        </div>
+      
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 style="text-align:center; font-family:'Orbitron',sans-serif; margin-bottom:1rem;">Get in Touch</h2>
+      <p style="text-align:center; max-width:600px; margin: auto;">Questions, custom requests, or just say hello—reach out via email or GitHub.</p>
+      <p style="text-align:center; margin-top:1rem;"><a href="mailto:hello@moonaispace.com" class="btn btn-outline">Email Us</a> <a href="https://github.com/zaheergopang/moonai.space" target="_blank" class="btn btn-outline">GitHub</a></p>
+    </section>
   </main>
+
+  <footer>
+    <p>&copy; 2025 MoonAI Space. All rights reserved. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+  </footer>
 </body>
 </html>
