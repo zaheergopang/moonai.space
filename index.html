@@ -4,96 +4,144 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Title & Meta Description for SEO -->
+  <!-- SEO: Title & Meta Description -->
   <title>AI Thumbnails n8n Workflow | MoonAI Space</title>
-  <meta name="description" content="Learn how to auto-generate YouTube thumbnails with AI & n8n—step-by-step guide, ready to deploy." />
+  <meta name="description" content="Automate YouTube thumbnail creation & full video uploads with AI-powered n8n workflows—free, plug-and-play, built for creators." />
 
-  <!-- Preload fonts for performance -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  </noscript>
+  <!-- Preload Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="styles/main.css" />
+  <!-- Inline Styles (original) -->
+  <style>
+    :root {
+      --primary: #4fc3f7;
+      --accent: #ff4081;
+      --bg-dark: #0a0f2f;
+      --bg-light: #1b1f3b;
+      --text-light: #e0e0e0;
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-light); scroll-behavior: smooth; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
 
-  <script defer src="scripts/main.js"></script>
+    /* Header */
+    header { padding: 1rem 2rem; background: rgba(10,15,47,0.8); position: fixed; width: 100%; top: 0; z-index: 10; }
+    header nav ul { display: flex; gap: 1.5rem; justify-content: flex-end; }
+    header nav a { font-weight: 500; }
+
+    /* Hero */
+    .hero { display: flex; align-items: center; justify-content: center; min-height: 80vh; background: linear-gradient(135deg, #101533, #16204a); position: relative; }
+    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, var(--primary) 0%, rgba(79,195,247,0.1) 70%); animation: rotateBG 20s linear infinite; }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 1rem; text-align: center; }
+    .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-bottom: 1rem; color: var(--primary); }
+    .hero p { font-size: 1.125rem; margin-bottom: 2rem; line-height: 1.6; }
+    .btn { padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 600; transition: background var(--transition); }
+    .btn-primary { background: var(--primary); color: var(--bg-dark); }
+    .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+
+    @keyframes rotateBG { to { transform: rotate(360deg); } }
+
+    /* Features */
+    #features { padding: 4rem 2rem; }
+    #features h2 { text-align: center; font-family: 'Orbitron', sans-serif; margin-bottom: 2rem; }
+    .cards { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); }
+    .card { background: var(--bg-light); padding: 1.5rem; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    .card h3 { margin-bottom: 1rem; color: var(--accent); }
+    .card p { font-size: 0.95rem; line-height: 1.5; }
+
+    /* Footer */
+    footer { background: var(--bg-light); text-align: center; padding: 2rem 1rem; margin-top: 4rem; }
+    footer p { font-size: 0.9rem; }
+    footer a { color: var(--primary); }
+
+    @media (max-width: 600px) { .hero h1 { font-size: 2.25rem; } }
+  </style>
 
   <!-- Schema.org JSON-LD for Rich Snippets -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "MoonAI Space n8n Workflows",
-      "description": "Plug-and-play AI automation for creators.",
-      "image": "images/feature-card-image.jpg",
-      "brand": { "@type": "Brand", "name": "MoonAI Space" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-      "featureList": [
-        "Auto-generate AI thumbnails",
-        "YouTube metadata injection",
-        "Automated chapter creation"
-      ]
-    }
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MoonAI Space n8n Workflows",
+    "description": "Automate YouTube thumbnail creation & full video uploads with AI-powered n8n workflows.",
+    "image": "https://yourdomain.com/downloads/workflow-preview.png",
+    "brand": { "@type": "Brand", "name": "MoonAI Space" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+    "featureList": [
+      "Auto Upload",
+      "AI Thumbnails",
+      "SEO Optimizer",
+      "Voice-Over Slideshows",
+      "Analytics Alerts"
+    ]
+  }
   </script>
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/marketplace/">Marketplace</a></li>
-        <li><a href="/contact/">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://github.com/zaheergopang/moonai.space" target="_blank">GitHub</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <!-- background and other styling live in main.css -->
-      <h1>Your AI-powered Video Automation</h1>
-      <p>Accelerate your YouTube workflow with n8n + AI.</p>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-      <div class="feature-card">
-        <img src="images/thumb1-compressed.jpg" alt="Auto-generate AI thumbnails" loading="lazy" width="400" height="300" />
-        <h3>Auto-generate AI thumbnails</h3>
-        <p>Instantly create high-converting YouTube thumbnails using AI models in n8n.</p>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Automate Your Content,<br> Amplify Your Reach</h1>
+      <p>Plug-and-play n8n + AI workflows built for digital creators. Uploads, SEO, thumbnails & more—fully automated.</p>
+      <a href="downloads/workflow.zip" class="btn btn-primary" download>📥 Download Free “3 n8n YouTube Workflows”</a>
+      <p style="margin-top:1rem; font-size:0.95rem; color:#aaa;">Questions or custom requests? <a href="mailto:zaheergopang123.bz@gmail.com" style="color:var(--primary); text-decoration:underline;">Email us</a>.</p>
+      <div style="margin-top:1.5rem; display:flex; gap:1rem; justify-content:center;">
+        <a href="#marketplace" class="btn btn-outline">Browse Marketplace</a>
+        <a href="#features" class="btn btn-outline">Explore Features</a>
       </div>
-      <div class="feature-card">
-        <img src="images/thumb2-compressed.jpg" alt="YouTube metadata injection" loading="lazy" width="400" height="300" />
-        <h3>YouTube metadata injection</h3>
-        <p>Automatically fill video titles, descriptions, and tags right before upload.</p>
-      </div>
-      <div class="feature-card">
-        <img src="images/thumb3-compressed.jpg" alt="Automated chapter creation" loading="lazy" width="400" height="300" />
-        <h3>Automated chapter creation</h3>
-        <p>Break your videos into timestamped chapters without lifting a finger.</p>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Blog Links -->
-    <section class="blog-intro">
-      <h2>Latest from the Blog</h2>
-      <ul>
-        <li><a href="blog/ai-thumbnails-n8n/">How to Build an AI Thumbnails Workflow in n8n</a></li>
-        <li><a href="blog/metadata-injection-guide/">YouTube Metadata Injection with n8n</a></li>
-        <li><a href="blog/automated-chapters/">Automated Chapter Creation Tutorial</a></li>
-      </ul>
-    </section>
+  <!-- Features -->
+  <section id="features">
+    <h2>Core Workflows</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Auto Upload</h3>
+        <p>Schedule & publish videos with dynamic titles, descriptions, and tags using n8n triggers.</p>
+      </div>
+      <div class="card">
+        <h3>AI Thumbnails</h3>
+        <p>Auto-generate engaging thumbnails using AI image tools, saving hours of design work.</p>
+      </div>
+      <div class="card">
+        <h3>SEO Optimizer</h3>
+        <p>Analyze and update metadata for better discoverability with AI insights.</p>
+      </div>
+      <div class="card">
+        <h3>Voice-Over Slideshows</h3>
+        <p>Create slide-based videos with AI voice narration—no manual editing needed.</p>
+      </div>
+      <div class="card">
+        <h3>Analytics Alerts</h3>
+        <p>Receive real-time performance summaries and recommendations by email.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- CTA -->
-    <section class="cta">
-      <p>Ready to dive in? Check out our <a href="marketplace/">Marketplace</a> for pre-built workflows.</p>
-    </section>
-  </main>
+  <!-- Contact -->
+  <section id="contact" style="padding:4rem 2rem; text-align:center;">
+    <h2 style="font-family:'Orbitron',sans-serif; margin-bottom:1rem;">Get in Touch</h2>
+    <p style="max-width:600px; margin:auto; margin-bottom:1rem;">Any questions, feedback, or if you need the ZIP password, just drop us a line.</p>
+    <a href="mailto:zaheergopang123.bz@gmail.com" class="btn btn-outline">Email Us</a>
+  </section>
 
   <footer>
-    <p>&copy; 2025 MoonAI Space. All rights reserved.</p>
+    <p>&copy; 2025 MoonAI Space. All rights reserved. <a href="terms-of-service.html">Terms of Service</a></p>
   </footer>
 </body>
 </html>
