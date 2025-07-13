@@ -3,98 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- Title & Meta Description for SEO -->
   <title>AI Thumbnails n8n Workflow | MoonAI Space</title>
   <meta name="description" content="Learn how to auto-generate YouTube thumbnails with AI & n8n—step-by-step guide, ready to deploy." />
 
   <!-- Preload fonts for performance -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" as="style" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"></noscript>
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  </noscript>
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="styles/main.css" />
 
-  <!-- Inline critical CSS; defer non-critical JS -->
-  <style>
-    /* existing root variables and critical styling; unchanged */
-  </style>
-  <script defer src="/scripts/main.js"></script>
+  <script defer src="scripts/main.js"></script>
 
   <!-- Schema.org JSON-LD for Rich Snippets -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "MoonAI Space n8n Workflows",
-    "description": "Plug-and-play AI automation for creators.",
-    "image": "https://yourdomain.com/images/feature-card-image.jpg",
-    "brand": {"@type": "Brand","name": "MoonAI Space"},
-    "offers": {"@type": "Offer","price": "0","priceCurrency": "USD","availability": "https://schema.org/InStock"},
-    "featureList": [
-      "Auto-generate AI thumbnails",
-      "YouTube metadata injection",
-      "Automated chapter creation"
-    ]
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "MoonAI Space n8n Workflows",
+      "description": "Plug-and-play AI automation for creators.",
+      "image": "images/feature-card-image.jpg",
+      "brand": { "@type": "Brand", "name": "MoonAI Space" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      "featureList": [
+        "Auto-generate AI thumbnails",
+        "YouTube metadata injection",
+        "Automated chapter creation"
+      ]
+    }
   </script>
 </head>
 <body>
   <header>
-    <!-- unchanged header content -->
     <nav>
       <ul>
-        <li><a href="/" title="Home">Home</a></li>
-        <li><a href="/blog/" title="Blog">Blog</a></li>
-        <li><a href="/marketplace/" title="Marketplace">Marketplace</a></li>
-        <li><a href="/contact/" title="Contact">Contact</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/marketplace/">Marketplace</a></li>
+        <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Hero Section with background fallback -->
-    <section class="hero" style="background-image: url('/images/hero-compressed.jpg'); background-size: cover; background-position: center;">
-      <img src="/images/hero-compressed.jpg" alt="AI-driven thumbnail generation" loading="lazy" width="1200" height="600" style="opacity:0; position:absolute;" />
-      <!-- hero text unchanged -->
+    <!-- Hero Section -->
+    <section class="hero">
+      <!-- background and other styling live in main.css -->
+      <h1>Your AI-powered Video Automation</h1>
+      <p>Accelerate your YouTube workflow with n8n + AI.</p>
     </section>
 
-    <!-- Features Section (with lazy-loaded thumbnails) -->
+    <!-- Features Section -->
     <section class="features">
       <div class="feature-card">
-        <img src="/images/thumb1-compressed.jpg" alt="Auto-generate AI thumbnails" loading="lazy" width="400" height="300" />
+        <img src="images/thumb1-compressed.jpg" alt="Auto-generate AI thumbnails" loading="lazy" width="400" height="300" />
         <h3>Auto-generate AI thumbnails</h3>
         <p>Instantly create high-converting YouTube thumbnails using AI models in n8n.</p>
       </div>
       <div class="feature-card">
-        <img src="/images/thumb2-compressed.jpg" alt="YouTube metadata injection" loading="lazy" width="400" height="300" />
+        <img src="images/thumb2-compressed.jpg" alt="YouTube metadata injection" loading="lazy" width="400" height="300" />
         <h3>YouTube metadata injection</h3>
         <p>Automatically fill video titles, descriptions, and tags right before upload.</p>
       </div>
       <div class="feature-card">
-        <img src="/images/thumb3-compressed.jpg" alt="Automated chapter creation" loading="lazy" width="400" height="300" />
+        <img src="images/thumb3-compressed.jpg" alt="Automated chapter creation" loading="lazy" width="400" height="300" />
         <h3>Automated chapter creation</h3>
         <p>Break your videos into timestamped chapters without lifting a finger.</p>
       </div>
     </section>
 
-    <!-- Example Internal Linking in Content -->
+    <!-- Blog Links -->
     <section class="blog-intro">
       <h2>Latest from the Blog</h2>
       <ul>
-        <li><a href="/blog/ai-thumbnails-n8n/">How to Build an AI Thumbnails Workflow in n8n</a></li>
-        <li><a href="/blog/metadata-injection-guide/">YouTube Metadata Injection with n8n</a></li>
-        <li><a href="/blog/automated-chapters/">Automated Chapter Creation Tutorial</a></li>
+        <li><a href="blog/ai-thumbnails-n8n/">How to Build an AI Thumbnails Workflow in n8n</a></li>
+        <li><a href="blog/metadata-injection-guide/">YouTube Metadata Injection with n8n</a></li>
+        <li><a href="blog/automated-chapters/">Automated Chapter Creation Tutorial</a></li>
       </ul>
     </section>
 
-    <!-- Call-to-action linking to Marketplace -->
+    <!-- CTA -->
     <section class="cta">
-      <p>Ready to dive in? Check out our <a href="/marketplace/">Marketplace</a> for pre-built workflows.</p>
+      <p>Ready to dive in? Check out our <a href="marketplace/">Marketplace</a> for pre-built workflows.</p>
     </section>
   </main>
 
   <footer>
-    <!-- unchanged footer fonts/colors -->
     <p>&copy; 2025 MoonAI Space. All rights reserved.</p>
   </footer>
 </body>
