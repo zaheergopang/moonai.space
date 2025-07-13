@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generate AI Thumbnails Effortlessly | MoonAI Blog</title>
+  <meta name="description" content="Step-by-step guide: connect AI image tools to n8n to auto-create eye-catching YouTube thumbnails."/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary:#4fc3f7; --accent:#ff4081; --bg-dark:#0a0f2f; --bg-light:#1b1f3b; --text-light:#e0e0e0; --radius:12px; --transition:.3s;}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--text-light);line-height:1.6;}
+    a{color:var(--primary);text-decoration:none;transition:color var(--transition);}
+    a:hover{color:var(--accent);}
+    header, footer{background:var(--bg-light);padding:1rem;}
+    main{max-width:800px;margin:2rem auto;padding:0 1rem;}
+    h1,h2{font-family:'Orbitron',sans-serif;}
+    .section{margin-bottom:2rem;}
+    pre{background:var(--bg-light);padding:1rem;border-radius:var(--radius);overflow-x:auto;}
+    .faq dt{font-weight:bold;margin-top:1rem;}
+    .faq dd{margin-left:1rem;margin-bottom:1rem;}
+    .contact{padding:2rem;background:var(--bg-light);border-radius:var(--radius);}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">MoonAI Space</a>
+      <ul style="display:flex;gap:1rem;">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="#contact-section">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h1>🎨 Generate AI Thumbnails Effortlessly</h1>
+      <p class="section">Learn how to automate the creation of eye-catching YouTube thumbnails using AI and n8n — no design tools needed.</p>
+
+      <h2 class="section">Why Use AI Thumbnails?</h2>
+      <ul>
+        <li>Stand out with less effort — no graphic design required.</li>
+        <li>Maintain consistency across your videos’ visual branding.</li>
+        <li>Scale thumbnail creation when batching content.</li>
+      </ul>
+
+      <h2 class="section">What You'll Need</h2>
+      <ul>
+        <li>n8n set up (self-hosted or cloud).</li>
+        <li>An AI image generation API (OpenAI, DALL·E, Stability, etc.).</li>
+        <li>Video title or keywords to prompt the AI.</li>
+      </ul>
+
+      <h2 class="section">Step 1: Trigger Your Workflow</h2>
+      <p>Start with an HTTP or manual trigger node where you input title & key visuals:</p>
+      <pre><code>{
+  "nodes": [
+    { "type": "n8n-nodes-base.manualTrigger" }
+  ]
+}</code></pre>
+
+      <h2 class="section">Step 2: Send to AI Image API</h2>
+      <p>Add an HTTP Request node to generate a thumbnail:</p>
+      <pre><code>{
+  "nodes": [
+    { "type": "n8n-nodes-base.httpRequest", "parameters": {
+        "url": "https://api.openai.com/v1/images/generations",
+        "method": "POST",
+        "body": {
+          "prompt": "thumbnail for {{ $json[\"title\"] }} with bright colors, bold text",
+          "n": 1, "size": "512x512"
+        },
+        "options": { "auth": { "type": "headerAuth", "headerAuth": { "header": "Authorization", "value": "Bearer {{ $credentials.openai.apiKey }}" } } }
+      } }
+  ]
+}</code></pre>
+
+      <h2 class="section">Step 3: Save & Use the Image</h2>
+      <p>Use a “Convert to File” node to turn the response into an image file, then pass it to your YouTube upload node.</p>
+
+      <h2 class="section">Step 4: Integrate with Upload Workflow</h2>
+      <p>Combine both workflows: trigger → generate thumbnail → upload video with the AI-generated image as thumbnail + metadata.</p>
+
+      <h2 class="section">Tips for Better Thumbnails</h2>
+      <ul>
+        <li>Include readable titles/text on the image.</li>
+        <li>Use consistent backgrounds and color schemes.</li>
+        <li>Generate multiple versions and compare click-through rates.</li>
+      </ul>
+
+      <h2 class="section">Frequently Asked Questions</h2>
+      <dl class="faq">
+        <dt>❓ Do I need an AI API key?</dt>
+        <dd>Yes — you'll need access to an image generation service (OpenAI, Stability, etc.).</dd>
+
+        <dt>❓ What if the generated thumbnail isn't the right size?</dt>
+        <dd>You can post-process with an image-resize node or specify exact resolution in the API request.</dd>
+
+        <dt>❓ Can this replace human designers?</dt>
+        <dd>It’s a great starting point — but feel free to tweak or enhance AI-generated thumbnails in editors.</dd>
+      </dl>
+
+      <div class="contact" id="contact-section">
+        <h2>💼 Hire or Buy Workflows</h2>
+        <p>Want a complete workflow or custom branding? Reach out:</p>
+        <p><strong>Email:</strong> <a href="mailto:zaheergopang123.bz@gmail.com">zaheergopang123.bz@gmail.com</a></p>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MoonAI Space. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+  </footer>
+</body>
+</html>
