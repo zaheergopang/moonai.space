@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoonAI Space - Professional AI Automation for Creators</title>
+  <meta name="description" content="Elevate your content creation with professional-grade, AI-powered n8n workflows for YouTube automation, SEO, and more." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles for Theme -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0D0C1D; /* Deep dark blue-purple */
+      background-image: radial-gradient(at 20% 20%, hsla(252, 50%, 15%, 0.4) 0px, transparent 50%),
+                        radial-gradient(at 80% 80%, hsla(280, 50%, 15%, 0.3) 0px, transparent 50%);
+      color: #E0E0E0;
+    }
+    .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+    .glass-nav {
+      background-color: rgba(13, 12, 29, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #A78BFA, #F472B6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #8B5CF6, #6D28D9);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+    }
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(167, 139, 250, 0.5);
+      background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    }
+    .pricing-card-popular {
+      border-color: #8B5CF6;
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+    }
+  </style>
+  
+  <!-- SEO Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MoonAI Space - n8n Workflows",
+    "description": "Automate YouTube content creation with professional AI-powered n8n workflows.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body class="antialiased">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full z-50 glass-nav">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="font-orbitron text-2xl font-bold tracking-wider text-white">
+        Moon<span class="gradient-text">AI</span>
+      </a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a>
+        <a href="#marketplace" class="text-gray-300 hover:text-white transition-colors">Marketplace</a>
+        <a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+        <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+      </nav>
+      <a href="#marketplace" class="hidden md:inline-block px-5 py-2 rounded-lg font-semibold text-white btn-secondary">Get Workflows</a>
+      <!-- Mobile Menu Button can be added here -->
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 text-center overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <!-- Decorative background elements -->
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-900 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-900 rounded-full filter blur-3xl opacity-30 animate-pulse animation-delay-4000"></div>
+        </div>
+      <div class="container mx-auto px-6 relative z-10">
+        <h1 class="font-orbitron text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4">
+          Automate Your Content.<br> <span class="gradient-text">Amplify Your Reach.</span>
+        </h1>
+        <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-8">
+          Stop wasting time on repetitive tasks. Use our production-ready n8n + AI workflows to automate uploads, SEO, thumbnails, and more.
+        </p>
+        <div class="flex justify-center items-center gap-4 flex-wrap">
+          <a href="downloads/workflow.zip" class="px-8 py-4 rounded-lg font-bold text-white text-lg btn-primary" download>
+            Download Free Workflows
+          </a>
+          <a href="#features" class="px-8 py-4 rounded-lg font-bold text-white text-lg btn-secondary">
+            Explore Features
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-gray-400">
+          To get the password for the ZIP file, <a href="mailto:zaheergopang123.bz@gmail.com" class="text-violet-400 hover:underline">email us</a> after downloading.
+        </p>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="font-orbitron text-3xl md:text-4xl font-bold text-white">The Future of Content Creation is Automated</h2>
+          <p class="max-w-2xl mx-auto mt-4 text-gray-400">Our core workflows are designed to handle the most time-consuming parts of your process.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature Card 1 -->
+          <div class="card p-8 rounded-xl">
+            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-900/50 mb-6">
+              <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Auto Upload & Schedule</h3>
+            <p class="text-gray-400">Publish videos with dynamic titles, descriptions, and tags using n8n triggers.</p>
+          </div>
+          <!-- Feature Card 2 -->
+          <div class="card p-8 rounded-xl">
+            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-900/50 mb-6">
+               <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1-1m6-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">AI-Generated Thumbnails</h3>
+            <p class="text-gray-400">Automatically create engaging, high-CTR thumbnails using AI image generation.</p>
+          </div>
+          <!-- Feature Card 3 -->
+          <div class="card p-8 rounded-xl">
+            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-900/50 mb-6">
+              <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Smart SEO Optimizer</h3>
+            <p class="text-gray-400">Analyze and update metadata for better discoverability with AI-driven insights.</p>
+          </div>
+          <!-- Feature Card 4 -->
+          <div class="card p-8 rounded-xl">
+            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-900/50 mb-6">
+              <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.636 18.364a9 9 0 010-12.728m2.828 9.9a5 5 0 010-7.072"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">AI Voice-Over Slideshows</h3>
+            <p class="text-gray-400">Create simple videos from text or slides with realistic AI voice narration.</p>
+          </div>
+          <!-- Feature Card 5 -->
+          <div class="card p-8 rounded-xl">
+             <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-900/50 mb-6">
+              <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Performance Alerts</h3>
+            <p class="text-gray-400">Receive real-time performance summaries and optimization tips by email.</p>
+          </div>
+           <!-- Feature Card 6 -->
+          <div class="card p-8 rounded-xl">
+             <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-violet-900/50 mb-6">
+              <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Plug & Play Code</h3>
+            <p class="text-gray-400">Easily import our workflows into your n8n instance with minimal setup required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketplace/Pricing Section -->
+    <section id="marketplace" class="py-20 bg-black bg-opacity-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="font-orbitron text-3xl md:text-4xl font-bold text-white">Workflow Marketplace</h2>
+          <p class="max-w-2xl mx-auto mt-4 text-gray-400">Choose the right package for your creative needs. One-time payment, lifetime updates.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Pricing Card 1 -->
+          <div class="card p-8 rounded-xl flex flex-col">
+            <h3 class="font-orbitron text-2xl font-bold text-white mb-2">Starter Pack</h3>
+            <p class="text-gray-400 mb-6">For creators just getting started with automation.</p>
+            <p class="text-4xl font-bold text-white mb-6">$19 <span class="text-lg font-normal text-gray-400">/ one-time</span></p>
+            <ul class="space-y-4 text-gray-300 mb-8 flex-grow">
+              <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>3 Core Workflows</li>
+              <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Standard Support</li>
+            </ul>
+            <a href="#" class="w-full text-center px-6 py-3 rounded-lg font-semibold text-white btn-secondary">Get Started</a>
+          </div>
+          <!-- Pricing Card 2 (Popular) -->
+          <div class="card p-8 rounded-xl flex flex-col pricing-card-popular relative">
+            <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                <span class="px-4 py-1 bg-violet-600 text-white text-sm font-semibold rounded-full">Most Popular</span>
+            </div>
+            <h3 class="font-orbitron text-2xl font-bold text-white mb-2">Pro Bundle</h3>
+            <p class="text-gray-400 mb-6">For professionals scaling their content production.</p>
+            <p class="text-4xl font-bold text-white mb-6">$49 <span class="text-lg font-normal text-gray-400">/ one-time</span></p>
+            <ul class="space-y-4 text-gray-300 mb-8 flex-grow">
+              <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>7 Advanced Workflows</li>
+              <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Includes all Starter features</li>
+              <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Priority Email Support</li>
+            </ul>
+            <a href="#" class="w-full text-center px-6 py-3 rounded-lg font-semibold text-white btn-primary">Choose Pro</a>
+          </div>
+          <!-- Pricing Card 3 -->
+          <div class="card p-8 rounded-xl flex flex-col">
+            <h3 class="font-orbitron text-2xl font-bold text-white mb-2">Enterprise Suite</h3>
+            <p class="text-gray-400 mb-6">For teams and agencies with custom needs.</p>
+            <p class="text-4xl font-bold text-white mb-6">$99 <span class="text-lg font-normal text-gray-400">/ one-time</span></p>
+            <ul class="space-y-4 text-gray-300 mb-8 flex-grow">
+              <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>All Pro Workflows</li>
+              <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>3 Custom Workflows</li>
+              <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Direct Support Channel</li>
+            </ul>
+            <a href="#" class="w-full text-center px-6 py-3 rounded-lg font-semibold text-white btn-secondary">Contact Sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+             <h2 class="font-orbitron text-3xl md:text-4xl font-bold text-white">Have Questions?</h2>
+             <p class="max-w-2xl mx-auto mt-4 text-gray-400 mb-8">
+                Whether you need the password for the free download, have a custom request, or just want to say hi, we'd love to hear from you.
+             </p>
+             <div class="flex justify-center items-center gap-4">
+                <a href="mailto:zaheergopang123.bz@gmail.com" class="px-8 py-4 rounded-lg font-bold text-white text-lg btn-primary">
+                    Email Us
+                </a>
+                <a href="https://github.com/zaheergopang/moonai.space" target="_blank" class="px-8 py-4 rounded-lg font-bold text-white text-lg btn-secondary">
+                    View on GitHub
+                </a>
+             </div>
+        </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black bg-opacity-30 border-t border-white border-opacity-5">
+    <div class="container mx-auto px-6 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <p class="text-sm text-gray-400">&copy; 2025 MoonAI Space. All rights reserved.</p>
+        </div>
+        <div class="flex items-center space-x-6 text-sm">
+          <a href="privacy-policy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+          <a href="terms-of-service.html" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
