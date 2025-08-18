@@ -71,8 +71,48 @@
       border-color: #8B5CF6;
       box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
     }
+
+    /* Genie button specific */
+    .genie-btn {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.75rem; /* match rounded-xl */
+      will-change: transform, box-shadow, opacity;
+    }
+    .genie-btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(139,92,246,0.18);
+    }
+
+    /* subtle shimmer overlay */
+    .genie-btn .genie-overlay {
+      position: absolute;
+      inset: -40%;
+      transform: rotate(25deg);
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+      left: -120%;
+      transition: transform 0.9s cubic-bezier(.2,.9,.2,1);
+      pointer-events: none;
+      filter: blur(10px);
+      opacity: 0.0;
+    }
+    .genie-btn:hover .genie-overlay,
+    .genie-btn:focus .genie-overlay {
+      transform: translateX(250%) rotate(25deg);
+      left: -20%;
+      opacity: 0.9;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .genie-animate {
+        animation: none !important;
+      }
+    }
   </style>
-  
+
   <!-- SEO Schema -->
   <script type="application/ld+json">
   {
@@ -120,14 +160,36 @@
         <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-8">
           Stop wasting time on repetitive tasks. Use our production-ready n8n + AI workflows to automate uploads, SEO, thumbnails, and more.
         </p>
-        <div class="flex justify-center items-center gap-4 flex-wrap">
-          <a href="downloads/workflow.zip" class="px-8 py-4 rounded-lg font-bold text-white text-lg btn-primary" download>
+
+        <!-- Button Group with new Try Content Genie button -->
+        <div class="mt-6 flex flex-wrap gap-4 justify-center items-center">
+          <!-- Download Free Workflows -->
+          <a href="downloads/workflow.zip"
+             class="px-8 py-4 rounded-lg font-bold text-white text-lg btn-primary"
+             download
+             aria-label="Download Free Workflows">
             Download Free Workflows
           </a>
-          <a href="#features" class="px-8 py-4 rounded-lg font-bold text-white text-lg btn-secondary">
+
+          <!-- Try Content Genie (new) -->
+          <a href="content-genie.html"
+             class="genie-btn genie-animate inline-block px-10 py-4 rounded-xl font-extrabold text-white text-lg
+                    bg-gradient-to-r from-pink-500 via-violet-500 to-indigo-600
+                    shadow-lg shadow-violet-500/40 hover:shadow-pink-500/50
+                    transition-all duration-300 transform hover:-translate-y-1 focus:outline-none"
+             aria-label="Try Content Genie — open content genie page">
+            <span class="relative z-10">✨ Try Content Genie 🚀</span>
+            <span class="genie-overlay" aria-hidden="true"></span>
+          </a>
+
+          <!-- Explore Features -->
+          <a href="#features"
+             class="px-8 py-4 rounded-lg font-bold text-white text-lg btn-secondary"
+             aria-label="Explore Features">
             Explore Features
           </a>
         </div>
+
         <p class="mt-6 text-sm text-gray-400">
           To get the password for the ZIP file, <a href="mailto:zaheergopang123.bz@gmail.com" class="text-violet-400 hover:underline">email us</a> after downloading.
         </p>
@@ -243,7 +305,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- Contact Section -->
     <section id="contact" class="py-20">
         <div class="container mx-auto px-6 text-center">
