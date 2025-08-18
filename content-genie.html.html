@@ -35,6 +35,13 @@
 
     .font-orbitron{font-family:'Orbitron', sans-serif}
 
+    .glass-nav {
+      background-color: rgba(13, 12, 29, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
     /* Genie / Lamp decorative styles */
     .lamp {
       width: 86px; height:86px;
@@ -42,6 +49,8 @@
       border-radius: 999px;
       box-shadow: 0 6px 30px rgba(139,92,246,0.18), inset 0 -6px 12px rgba(0,0,0,0.12);
       display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+      border: none;
     }
     .genie-emoji {
       font-size: 34px; transform-origin:center;
@@ -54,6 +63,7 @@
     }
 
     /* sparkle */
+    #sparkle-root { position: absolute; left:0; top:0; width:86px; height:86px; pointer-events:none; }
     .sparkle {
       position:absolute; width:10px; height:10px; border-radius:50%;
       background: radial-gradient(circle at 30% 30%, #fff 0, rgba(255,255,255,0.55) 20%, transparent 60%);
@@ -68,10 +78,12 @@
     }
 
     /* confetti pieces */
+    #confetti-root { position: relative; width:100%; height:0; pointer-events:none; }
     .confetti-piece{
       position: absolute; width:10px;height:16px; opacity:0;
       transform-origin:center;
       animation: confetti 1200ms ease-out forwards;
+      border-radius:2px;
     }
     @keyframes confetti {
       0% { opacity:1; transform: translateY(0) rotate(0) scale(1); }
@@ -98,8 +110,13 @@
     }
     .cta-primary:hover{ transform: translateY(-3px) scale(1.01); }
 
-    /* small utilities for text contrast */
     .muted { color: var(--muted); }
+
+    input[type="text"] {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #EDEDF6;
+    }
   </style>
 </head>
 <body>
@@ -132,18 +149,231 @@
       <!-- Genie panel -->
       <div class="mt-8 bg-black bg-opacity-20 border border-white border-opacity-5 rounded-2xl p-6 relative">
         <div class="flex flex-col md:flex-row items-center gap-6">
-          <div class="flex-shrink-0">
+          <div class="flex-shrink-0 relative">
             <!-- lamp / genie -->
-            <button id="genie-lamp" aria-label="Rub the genie lamp" class="lamp" title="Rub the lamp">
+            <button id="genie-lamp" type="button" aria-label="Rub the genie lamp" class="lamp" title="Rub the lamp">
               <span class="genie-emoji" id="genie-emoji">🧞‍♂️</span>
             </button>
-            <!-- animated sparkles container -->
-            <div id="sparkle-root" class="relative" aria-hidden="true"></div>
+            <!-- animated sparkle container (positioned over the lamp) -->
+            <div id="sparkle-root" aria-hidden="true"></div>
           </div>
 
           <div class="flex-1">
             <label for="niche" class="block text-sm text-gray-300 mb-2">Tell the genie a niche (e.g. "gaming breakdowns", "easy recipes")</label>
             <input id="niche" type="text" placeholder="Your niche..." class="w-full px-4 py-3 rounded-lg bg-transparent border border-white/6 focus:border-violet-400 outline-none text-white" />
             <div class="mt-4 flex flex-wrap gap-3 items-center">
-              <button id="rub-btn" class="cta-primary px-5 py-3 rounded-lg text-white font-semibold shadow-lg">Rub the Lamp!</button>
-              <button id="surprise-btn" class="px-4 py-3 rounded-lg border border-white/10 text-white/90 hover:bg-white/
+              <button id="rub-btn" type="button" class="cta-primary px-5 py-3 rounded-lg text-white font-semibold shadow-lg">Rub the Lamp!</button>
+              <button id="surprise-btn" type="button" class="px-4 py-3 rounded-lg border border-white/10 text-white/90 hover:bg-white/2">Surprise me</button>
+
+              <div class="ml-auto text-sm muted">Tip: Try "shorts", "podcast clips", "product reviews"</div>
+            </div>
+            <p class="mt-3 text-sm muted">Content Genie is playful — use the ideas as starting points and customize them for your voice.</p>
+          </div>
+        </div>
+
+        <!-- confetti root -->
+        <div id="confetti-root" aria-hidden="true"></div>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="mt-8 grid gap-4"></div>
+
+      <div class="mt-6 text-sm muted">Want full automation? <a href="index.html#marketplace" class="text-violet-300 hover:underline">Explore our workflows</a>.</div>
+    </section>
+  </main>
+
+  <footer class="mt-20 border-t border-white/5 pt-8 pb-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-gray-400">&copy; 2025 MoonAI Space. All rights reserved.</p>
+      <div class="flex gap-6 text-sm">
+        <a href="privacy-policy.html" class="text-gray-400 hover:text-white">Privacy Policy</a>
+        <a href="terms-of-service.html" class="text-gray-400 hover:text-white">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Wait until DOM is fully ready to query & attach handlers
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        // Template data
+        const templates = [
+          { title: "Epic {niche} Challenge", thumb: "Bold colors, large count-down text", tip: "SEO: include '{niche} challenge' and year in the title." },
+          { title: "Hidden Secrets of {niche}", thumb: "Mysterious reveal with blurred background", tip: "Hook in first 5 seconds; add text overlay for context." },
+          { title: "{niche} Hacks for Beginners", thumb: "Step-by-step numbered graphics", tip: "Use chapters and timestamps for longer videos." },
+          { title: "Top 10 {niche} Wins & Fails", thumb: "Split-screen comparison + reaction face", tip: "Play with short clips — perfect for shorts." },
+          { title: "Future of {niche} with AI", thumb: "Futuristic neon glow and icons", tip: "Use AI voice for narration to speed production." },
+          { title: "{niche} Quick Tips in 60s", thumb: "Big bold text, 60s timer", tip: "Shorts-first: vertical thumbnail, clear text." },
+          { title: "One Tool That Changed {niche}", thumb: "Before/after split, tool highlight", tip: "Include timestamps in description for deep dive." }
+        ];
+
+        const humor = [
+          "Genie says: add a llama. Not required, but hilarious.",
+          "Warning: This idea may cause sudden fame (or snacks).",
+          "Pro tip from the lamp: subtitles = more watches."
+        ];
+
+        // helpers
+        const rand = (arr) => arr[Math.floor(Math.random()*arr.length)];
+        const resultsRoot = document.getElementById('results');
+        const lampBtn = document.getElementById('genie-lamp');
+        const rubBtn = document.getElementById('rub-btn');
+        const surpriseBtn = document.getElementById('surprise-btn');
+        const nicheInput = document.getElementById('niche');
+        const sparkleRoot = document.getElementById('sparkle-root');
+        const confettiRoot = document.getElementById('confetti-root');
+        const genieEmoji = document.getElementById('genie-emoji');
+
+        if (!resultsRoot || !lampBtn || !rubBtn || !nicheInput) {
+          console.error('Missing some required elements - genie cannot attach handlers.');
+          return;
+        }
+
+        // create sparkle function
+        function spawnSparkles(x=40,y=40){
+          for(let i=0;i<6;i++){
+            const sp = document.createElement('div');
+            sp.className='sparkle';
+            // place inside the small sparkle container, randomize a bit
+            sp.style.left = `${Math.max(0, Math.min(70, x + (Math.random()*40 - 20)))}px`;
+            sp.style.top = `${Math.max(0, Math.min(70, y + (Math.random()*40 - 20)))}px`;
+            sparkleRoot.appendChild(sp);
+            // cleanup
+            setTimeout(()=>sp.remove(), 1000);
+          }
+        }
+
+        // confetti
+        function spawnConfetti(x=40,y=70){
+          const colors = ['#F472B6','#A78BFA','#06B6D4','#F59E0B','#34D399'];
+          for(let i=0;i<12;i++){
+            const c = document.createElement('div');
+            c.className='confetti-piece';
+            c.style.left = `${Math.max(0, Math.min(document.body.clientWidth-10, (x + (Math.random()*120 - 60))))}px`;
+            c.style.top = `${y + (Math.random()*40 - 20)}px`;
+            c.style.background = colors[Math.floor(Math.random()*colors.length)];
+            c.style.transform = `rotate(${Math.random()*120 - 60}deg)`;
+            c.style.animationDelay = `${Math.random()*200}ms`;
+            confettiRoot.appendChild(c);
+            setTimeout(()=>c.remove(), 1500);
+          }
+        }
+
+        // genIdeas + render
+        function genIdeas(niche){
+          const out = [];
+          const useNiche = niche && niche.trim() !== '' ? niche.trim() : 'your niche';
+          for(let i=0;i<3;i++){
+            const t = templates[Math.floor(Math.random()*templates.length)];
+            const title = t.title.replace('{niche}', useNiche);
+            const thumb = t.thumb;
+            const tip = t.tip.replace('{niche}', useNiche);
+            const h = humor[Math.floor(Math.random()*humor.length)];
+            out.push({title, thumb, tip, fun: h});
+          }
+          return out;
+        }
+
+        function renderIdeas(ideas){
+          resultsRoot.innerHTML = '';
+          ideas.forEach((idea, idx) => {
+            const card = document.createElement('div');
+            card.className = 'idea-card flex flex-col md:flex-row gap-4 items-start';
+            card.innerHTML = `
+              <div class="w-full md:w-40 h-24 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,rgba(167,139,250,0.12),rgba(244,114,182,0.06));">
+                <div class="text-sm text-gray-100/90">${idea.thumb}</div>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-white font-semibold text-lg">${idea.title}</h3>
+                <p class="mt-1 text-sm muted">${idea.tip} <em class="text-violet-300">— ${idea.fun}</em></p>
+                <div class="mt-3 flex gap-3">
+                  <button class="copy-btn px-3 py-2 rounded-md bg-white/6 text-white text-sm" type="button">Copy Title</button>
+                  <button class="use-btn px-3 py-2 rounded-md bg-violet-600 text-white text-sm" type="button">Use Template</button>
+                  <a class="ml-auto text-sm muted" href="index.html#marketplace">Automate this →</a>
+                </div>
+              </div>
+            `;
+            resultsRoot.appendChild(card);
+
+            // attach copy handler
+            const copyBtn = card.querySelector('.copy-btn');
+            copyBtn.addEventListener('click', async () => {
+              try {
+                await navigator.clipboard.writeText(idea.title);
+                copyBtn.textContent = 'Copied!';
+                setTimeout(()=> copyBtn.textContent = 'Copy Title', 1500);
+              } catch(e){
+                copyBtn.textContent = 'Copy';
+              }
+            });
+
+            const useBtn = card.querySelector('.use-btn');
+            useBtn.addEventListener('click', () => {
+              nicheInput.value = idea.title;
+              nicheInput.focus();
+            });
+          });
+        }
+
+        // main rub action
+        function rubLamp(xOrigin = null, yOrigin = null){
+          lampBtn.classList.add('rub');
+          genieEmoji.textContent = '✨';
+          spawnSparkles(40,40);
+          spawnConfetti(80, 40);
+          setTimeout(()=> {
+            lampBtn.classList.remove('rub');
+            genieEmoji.textContent = '🧞‍♂️';
+          }, 900);
+
+          const niche = nicheInput.value.trim();
+          const ideas = genIdeas(niche || '');
+          renderIdeas(ideas);
+        }
+
+        // handlers
+        lampBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const rect = lampBtn.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          spawnSparkles(x, y);
+          spawnConfetti(rect.left + x, rect.top + y);
+          rubLamp(x,y);
+        });
+
+        rubBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          // small visual flash
+          rubBtn.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-6px)' }, { transform: 'translateY(0)' }], { duration: 450 });
+          rubLamp();
+        });
+
+        surpriseBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const surprises = ['shorts', 'product reviews', 'AI tools', 'meal prep', 'day-in-life', 'speedruns', 'budget tech'];
+          nicheInput.value = surprises[Math.floor(Math.random()*surprises.length)];
+          nicheInput.classList.add('ring-2', 'ring-violet-400');
+          setTimeout(()=> nicheInput.classList.remove('ring-2','ring-violet-400'), 700);
+        });
+
+        nicheInput.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter') {
+            e.preventDefault();
+            rubLamp();
+          }
+        });
+
+        // initial seed ideas immediately so user sees output instantly
+        const initial = genIdeas('shorts');
+        renderIdeas(initial);
+
+        // optional: expose for debugging
+        window.__moonai_genie = { renderIdeas, genIdeas };
+      } catch (err) {
+        console.error('Genie script error:', err);
+      }
+    });
+  </script>
+</body>
+</html>
