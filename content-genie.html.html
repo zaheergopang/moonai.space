@@ -1,108 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoonAI Content Genie</title>
-    <style>
-        /* Minimal CSS to ensure functional layout without disrupting original design */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .section { padding: 40px 0; text-align: center; }
-        .section-title { font-size: 2em; margin-bottom: 10px; }
-        .section-subtitle { margin-bottom: 30px; }
-        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
-        nav { background: #f4f4f4; padding: 10px 0; }
-        nav .container { display: flex; justify-content: space-between; align-items: center; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav ul li a { text-decoration: none; color: #333; }
-        nav .logo { font-weight: bold; font-size: 1.5em; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MoonAI Content Genie</title>
+  <meta name="description" content="MoonAI Content Genie - rub the lamp for AI-powered content ideas, thumbnails and tips." />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0D0C1D;
+      --muted: #A8A8B3;
+      --violet-1: #8B5CF6;
+      --violet-2: #F472B6;
+    }
+    html,body{height:100%}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background-color: var(--bg);
+      color: #E6E6F0;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(135,95,255,0.08) 0, transparent 20%),
+        radial-gradient(circle at 80% 80%, rgba(244,114,182,0.05) 0, transparent 25%);
+    }
+
+    .font-orbitron{font-family:'Orbitron', sans-serif}
+
+    /* Genie / Lamp decorative styles */
+    .lamp {
+      width: 86px; height:86px;
+      background: linear-gradient(145deg,#FFD37D,#FF9AC6);
+      border-radius: 999px;
+      box-shadow: 0 6px 30px rgba(139,92,246,0.18), inset 0 -6px 12px rgba(0,0,0,0.12);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .genie-emoji {
+      font-size: 34px; transform-origin:center;
+      transition: transform .35s cubic-bezier(.2,.9,.2,1);
+      filter: drop-shadow(0 6px 20px rgba(139,92,246,0.2));
+    }
+    .lamp:active .genie-emoji,
+    .lamp.rub .genie-emoji{
+      transform: translateY(-8px) scale(1.08) rotate(-8deg);
+    }
+
+    /* sparkle */
+    .sparkle {
+      position:absolute; width:10px; height:10px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff 0, rgba(255,255,255,0.55) 20%, transparent 60%);
+      box-shadow: 0 0 12px rgba(255,255,255,0.6);
+      opacity:0; transform: scale(.4);
+      animation: sparkle 900ms forwards ease-out;
+    }
+    @keyframes sparkle {
+      0% { opacity:0; transform: translateY(0) scale(.3) rotate(0); }
+      20% { opacity:1; transform: translateY(-8px) scale(1.05) rotate(10deg); }
+      100%{ opacity:0; transform: translateY(-60px) scale(.6) rotate(40deg); }
+    }
+
+    /* confetti pieces */
+    .confetti-piece{
+      position: absolute; width:10px;height:16px; opacity:0;
+      transform-origin:center;
+      animation: confetti 1200ms ease-out forwards;
+    }
+    @keyframes confetti {
+      0% { opacity:1; transform: translateY(0) rotate(0) scale(1); }
+      100% { opacity:0; transform: translateY(-220px) rotate(420deg) scale(.6); }
+    }
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .sparkle, .confetti-piece, .genie-emoji { transition: none !important; animation: none !important; }
+    }
+
+    /* idea card */
+    .idea-card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+                 border: 1px solid rgba(167,139,250,0.06); border-radius:12px; padding:16px; }
+    .ghost {
+      background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(244,114,182,0.06));
+      border-radius:8px;
+    }
+
+    /* buttons */
+    .cta-primary{
+      background: linear-gradient(90deg,var(--violet-1), #6D28D9);
+      box-shadow: 0 6px 24px rgba(139,92,246,0.18);
+    }
+    .cta-primary:hover{ transform: translateY(-3px) scale(1.01); }
+
+    /* small utilities for text contrast */
+    .muted { color: var(--muted); }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <div class="logo">MoonAI</div>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#features">Features</a></li>
-                    <li><a href="index.html#marketplace">Marketplace</a></li>
-                    <li><a href="index.html#blog">Blog</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-                <a href="index.html#get-workflows" class="btn">Get Workflows</a>
-            </div>
-        </nav>
-    </header>
+  <header class="fixed top-0 left-0 w-full z-50 glass-nav">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-orbitron text-2xl font-bold tracking-wider text-white">
+        Moon<span style="background:linear-gradient(90deg,#A78BFA,#F472B6); -webkit-background-clip:text; -webkit-text-fill-color:transparent">AI</span>
+      </a>
 
-    <section id="free-tools" class="section">
-        <div class="container">
-            <h2 class="section-title">MoonAI Content Genie: Spark Your Ideas!</h2>
-            <p class="section-subtitle">Rub the genie lamp for fun, unique content ideas powered by AI magic. Perfect for creators – get titles, thumbnails, and tips!</p>
-            
-            <div id="genie-app" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: #f9f9f9;">
-                <label for="niche-input">Enter your content niche (e.g., "gaming tips" or "cooking hacks"):</label>
-                <input type="text" id="niche-input" placeholder="Your niche..." style="width: 100%; padding: 10px; margin: 10px 0;">
-                <button id="genie-button" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Rub the Lamp!</button>
-                
-                <div id="genie-result" style="margin-top: 20px;"></div>
-                
-                <p style="margin-top: 20px; font-size: 0.9em;">Loved this? Automate full content creation with our workflows! <a href="index.html#marketplace" class="btn">Explore Now</a></p>
-            </div>
-        </div>
-    </section>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html#features" class="text-gray-300 hover:text-white transition-colors">Features</a>
+        <a href="index.html#marketplace" class="text-gray-300 hover:text-white transition-colors">Marketplace</a>
+        <a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+        <a href="index.html#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+      </nav>
 
-    <footer>
-        <div class="container">
-            <p>© 2025 MoonAI Space. All rights reserved.</p>
-            <ul>
-                <li><a href="index.html#privacy">Privacy Policy</a></li>
-                <li><a href="index.html#terms">Terms of Service</a></li>
-            </ul>
-        </div>
-    </footer>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="index.html#get-workflows" class="px-4 py-2 rounded-lg text-white btn-secondary">Get Workflows</a>
+      </div>
+    </div>
+  </header>
 
-    <script>
-        // Simple "AI" logic: Predefined idea templates with randomization
-        const ideas = [
-            { title: "Epic {niche} Challenge", thumbnail: "Bold colors with challenge icons", tip: "SEO: Use trending keywords like '{niche} 2025' for virality!" },
-            { title: "Hidden Secrets of {niche}", thumbnail: "Mysterious fog effect with reveal text", tip: "Fun twist: Add a cat meme – goes viral among pet lovers!" },
-            { title: "{niche} Hacks for Beginners", thumbnail: "Step-by-step infographic style", tip: "Optimize: Schedule with AI for peak times." },
-            { title: "Top 10 {niche} Fails & Wins", thumbnail: "Split-screen funny vs. pro", tip: "Humor alert: Your video might flop... or hit 1M views!" },
-            { title: "Future of {niche} with AI", thumbnail: "Futuristic glow and robot elements", tip: "Pro tip: Use our thumbnails workflow for auto-gen." }
-        ];
+  <main class="pt-28 pb-16">
+    <section class="max-w-5xl mx-auto px-6 text-center">
+      <h1 class="font-orbitron text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+        Content Genie — <span style="background:linear-gradient(90deg,#A78BFA,#F472B6); -webkit-background-clip:text; -webkit-text-fill-color:transparent">rub the lamp</span> for ideas
+      </h1>
+      <p class="mt-4 text-gray-300 max-w-2xl mx-auto">A playful, fast way to generate content titles, thumbnail concepts and optimization tips — powered by smart templates. Great for creators who want instant spark.</p>
 
-        const humorQuotes = [
-            "Your content goes viral... but only in alternate universes!",
-            "Genie says: This idea is gold – or at least shiny tin!",
-            "Warning: May cause excessive creativity and zero sleep."
-        ];
+      <!-- Genie panel -->
+      <div class="mt-8 bg-black bg-opacity-20 border border-white border-opacity-5 rounded-2xl p-6 relative">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <div class="flex-shrink-0">
+            <!-- lamp / genie -->
+            <button id="genie-lamp" aria-label="Rub the genie lamp" class="lamp" title="Rub the lamp">
+              <span class="genie-emoji" id="genie-emoji">🧞‍♂️</span>
+            </button>
+            <!-- animated sparkles container -->
+            <div id="sparkle-root" class="relative" aria-hidden="true"></div>
+          </div>
 
-        document.getElementById('genie-button').addEventListener('click', () => {
-            const niche = document.getElementById('niche-input').value.trim() || 'random';
-            const resultDiv = document.getElementById('genie-result');
-            resultDiv.innerHTML = ''; // Clear previous
-
-            if (niche === '') return;
-
-            // Generate 3 random ideas
-            for (let i = 0; i < 3; i++) {
-                const randomIdea = ideas[Math.floor(Math.random() * ideas.length)];
-                const filledTitle = randomIdea.title.replace('{niche}', niche);
-                const filledThumbnail = randomIdea.thumbnail;
-                const filledTip = randomIdea.tip.replace('{niche}', niche);
-                const randomHumor = humorQuotes[Math.floor(Math.random() * humorQuotes.length)];
-
-                resultDiv.innerHTML += `
-                    <h3>Idea ${i+1}: ${filledTitle}</h3>
-                    <p><strong>Thumbnail Concept:</strong> ${filledThumbnail}</p>
-                    <p><strong>SEO/Fun Tip:</strong> ${filledTip} <em>${randomHumor}</em></p>
-                    <hr>
-                `;
-            }
-        });
-    </script>
-</body>
-</html>
+          <div class="flex-1">
+            <label for="niche" class="block text-sm text-gray-300 mb-2">Tell the genie a niche (e.g. "gaming breakdowns", "easy recipes")</label>
+            <input id="niche" type="text" placeholder="Your niche..." class="w-full px-4 py-3 rounded-lg bg-transparent border border-white/6 focus:border-violet-400 outline-none text-white" />
+            <div class="mt-4 flex flex-wrap gap-3 items-center">
+              <button id="rub-btn" class="cta-primary px-5 py-3 rounded-lg text-white font-semibold shadow-lg">Rub the Lamp!</button>
+              <button id="surprise-btn" class="px-4 py-3 rounded-lg border border-white/10 text-white/90 hover:bg-white/
