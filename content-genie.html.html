@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonAI Content Genie</title>
+    <style>
+        /* Minimal CSS to ensure functional layout without disrupting original design */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section { padding: 40px 0; text-align: center; }
+        .section-title { font-size: 2em; margin-bottom: 10px; }
+        .section-subtitle { margin-bottom: 30px; }
+        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+        nav { background: #f4f4f4; padding: 10px 0; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a { text-decoration: none; color: #333; }
+        nav .logo { font-weight: bold; font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">MoonAI</div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#marketplace">Marketplace</a></li>
+                    <li><a href="index.html#blog">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <a href="index.html#get-workflows" class="btn">Get Workflows</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="free-tools" class="section">
+        <div class="container">
+            <h2 class="section-title">MoonAI Content Genie: Spark Your Ideas!</h2>
+            <p class="section-subtitle">Rub the genie lamp for fun, unique content ideas powered by AI magic. Perfect for creators – get titles, thumbnails, and tips!</p>
+            
+            <div id="genie-app" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: #f9f9f9;">
+                <label for="niche-input">Enter your content niche (e.g., "gaming tips" or "cooking hacks"):</label>
+                <input type="text" id="niche-input" placeholder="Your niche..." style="width: 100%; padding: 10px; margin: 10px 0;">
+                <button id="genie-button" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Rub the Lamp!</button>
+                
+                <div id="genie-result" style="margin-top: 20px;"></div>
+                
+                <p style="margin-top: 20px; font-size: 0.9em;">Loved this? Automate full content creation with our workflows! <a href="index.html#marketplace" class="btn">Explore Now</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 MoonAI Space. All rights reserved.</p>
+            <ul>
+                <li><a href="index.html#privacy">Privacy Policy</a></li>
+                <li><a href="index.html#terms">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // Simple "AI" logic: Predefined idea templates with randomization
+        const ideas = [
+            { title: "Epic {niche} Challenge", thumbnail: "Bold colors with challenge icons", tip: "SEO: Use trending keywords like '{niche} 2025' for virality!" },
+            { title: "Hidden Secrets of {niche}", thumbnail: "Mysterious fog effect with reveal text", tip: "Fun twist: Add a cat meme – goes viral among pet lovers!" },
+            { title: "{niche} Hacks for Beginners", thumbnail: "Step-by-step infographic style", tip: "Optimize: Schedule with AI for peak times." },
+            { title: "Top 10 {niche} Fails & Wins", thumbnail: "Split-screen funny vs. pro", tip: "Humor alert: Your video might flop... or hit 1M views!" },
+            { title: "Future of {niche} with AI", thumbnail: "Futuristic glow and robot elements", tip: "Pro tip: Use our thumbnails workflow for auto-gen." }
+        ];
+
+        const humorQuotes = [
+            "Your content goes viral... but only in alternate universes!",
+            "Genie says: This idea is gold – or at least shiny tin!",
+            "Warning: May cause excessive creativity and zero sleep."
+        ];
+
+        document.getElementById('genie-button').addEventListener('click', () => {
+            const niche = document.getElementById('niche-input').value.trim() || 'random';
+            const resultDiv = document.getElementById('genie-result');
+            resultDiv.innerHTML = ''; // Clear previous
+
+            if (niche === '') return;
+
+            // Generate 3 random ideas
+            for (let i = 0; i < 3; i++) {
+                const randomIdea = ideas[Math.floor(Math.random() * ideas.length)];
+                const filledTitle = randomIdea.title.replace('{niche}', niche);
+                const filledThumbnail = randomIdea.thumbnail;
+                const filledTip = randomIdea.tip.replace('{niche}', niche);
+                const randomHumor = humorQuotes[Math.floor(Math.random() * humorQuotes.length)];
+
+                resultDiv.innerHTML += `
+                    <h3>Idea ${i+1}: ${filledTitle}</h3>
+                    <p><strong>Thumbnail Concept:</strong> ${filledThumbnail}</p>
+                    <p><strong>SEO/Fun Tip:</strong> ${filledTip} <em>${randomHumor}</em></p>
+                    <hr>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
