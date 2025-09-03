@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "slug": "auto-upload",
+    "title": "How to Auto-Upload Videos with n8n",
+    "date": "July 13, 2025",
+    "excerpt": "Learn how to schedule YouTube uploads, generate metadata, and publish—all automated with n8n."
+  },
+  {
+    "slug": "generate-thumbnails",
+    "title": "Generate AI Thumbnails Effortlessly",
+    "date": "July 6, 2025",
+    "excerpt": "Step-by-step guide: connect AI tools to n8n to auto-create eye-catching thumbnails."
+  },
+  {
+    "slug": "youtube-policy",
+    "title": "YouTube’s New Policy: Bad News for Automation?",
+    "date": "July 16, 2025",
+    "excerpt": "YouTube is cracking down on AI-driven channels—but automation still works if you pivot smart."
+  }
+]
