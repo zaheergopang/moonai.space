@@ -1,68 +1,52 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{TITLE}} — MoonAI Space</title>
-  <meta name="description" content="{{DESCRIPTION}}">
-  <link rel="canonical" href="{{CANONICAL}}">
-  <meta name="robots" content="index,follow">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Article Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "{{TITLE}}",
-    "datePublished": "{{DATE}}",
-    "dateModified": "{{DATE}}",
-    "description": "{{DESCRIPTION}}",
-    "mainEntityOfPage": {"@type":"WebPage","@id":"{{CANONICAL}}"},
-    "author":{"@type":"Person","name":"MoonAI Space"}
-  }
-  </script>
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{title}} | MoonAI Blog</title>
+  <meta name="description" content="{{excerpt}}">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary:#4fc3f7; --accent:#ff4081; --bg-dark:#0a0f2f; --bg-light:#1b1f3b; --text-light:#e0e0e0; --radius:12px; --transition:.3s; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html, body{font-family:'Inter',sans-serif; background:var(--bg-dark); color:var(--text-light); line-height:1.6;}
+    a{color:var(--primary); text-decoration:none;}
+    header, footer{background:var(--bg-light); padding:1rem;}
+    nav ul{display:flex; gap:1rem;}
+    main{max-width:800px;margin:2rem auto; padding:0 1rem;}
+    article{background:var(--bg-light); padding:2rem; border-radius:var(--radius);}
+    h1{font-family:'Orbitron',sans-serif; margin-bottom:1rem;}
+    .meta{font-size:.9rem; color:#aaa; margin-bottom:1.5rem;}
+    @media(max-width:600px){nav ul{flex-direction:column;}}
+  </style>
 </head>
-<body class="antialiased bg-[#0D0C1D] text-gray-200">
-  <!-- reuse your site header -->
-  <header class="fixed top-0 left-0 w-full z-50 glass-nav">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/" class="font-orbitron text-2xl font-bold tracking-wider text-white">Moon<span class="gradient-text">AI</span></a>
-      <nav class="hidden md:flex items-center space-x-8">
-        <a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a>
-        <a href="#marketplace" class="text-gray-300 hover:text-white transition-colors">Marketplace</a>
-        <a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a>
-        <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
-      </nav>
-    </div>
+<body>
+  <header>
+    <nav class="nav-container">
+      <a class="logo" href="../index.html">MoonAI Space</a>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="pt-32 pb-16">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <a href="blog.html" class="text-violet-300 hover:underline">&larr; Back to Blog</a>
-      <h1 class="mt-4 text-4xl font-extrabold">{{TITLE}}</h1>
-      <div class="text-sm text-gray-400 mt-2">{{DATE}} · Keyword: {{KEYWORD}} · Tags: {{TAGS}}</div>
-
-      <article class="prose prose-invert mt-6">
-        {{CONTENT_HTML}}
-      </article>
-
-      <!-- Optional FAQ block will be injected by n8n when provided -->
-      <div id="faq-section" class="mt-8"></div>
-    </div>
+  <main>
+    <article>
+      <h1>{{title}}</h1>
+      <div class="meta">{{date}}</div>
+      <div class="content">
+        {{content}}
+      </div>
+    </article>
   </main>
 
-  <footer class="bg-black bg-opacity-30 border-t border-white border-opacity-5">
-    <div class="container mx-auto px-6 py-8">
-      <div class="flex justify-between items-center">
-        <p class="text-sm text-gray-400">&copy; 2025 MoonAI Space. All rights reserved.</p>
-        <div class="text-sm">
-          <a href="privacy-policy.html" class="text-gray-400 hover:text-white ml-4">Privacy</a>
-          <a href="terms-of-service.html" class="text-gray-400 hover:text-white ml-4">Terms</a>
-        </div>
-      </div>
-    </div>
+  <footer>
+    <p>&copy; 2025 MoonAI Space. All rights reserved. 
+      <a href="../privacy-policy.html">Privacy Policy</a> | 
+      <a href="../terms-of-service.html">Terms of Service</a>
+    </p>
   </footer>
 </body>
 </html>
