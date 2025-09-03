@@ -7,7 +7,6 @@
   <meta name="description" content="MoonAI Space blog: tutorials, guides, and best practices on AI + n8n automation for creators."/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Variables & base reset (same as index.html) */
     :root { --primary:#4fc3f7; --accent:#ff4081; --bg-dark:#0a0f2f; --bg-light:#1b1f3b; --text-light:#e0e0e0; --radius:12px; --transition:.3s; }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     html, body{font-family:'Inter',sans-serif; background:var(--bg-dark); color:var(--text-light); line-height:1.6;}
@@ -39,35 +38,43 @@
   <main>
     <h1>MoonAI Blog</h1>
     <p>Latest tutorials, guides, and tips for AI + n8n automation.</p>
-
-<article class="post">
-  <h2><a href="post-auto-upload.html">How to Auto‑Upload Videos with n8n</a></h2>
-  <div class="meta">July 13, 2025</div>
-  <p>Learn how to schedule your YouTube uploads, generate metadata, and publish—all automated with n8n.</p>
-  <a class="read-more" href="post-auto-upload.html">Read more →</a>
-</article>
-
-<article class="post">
-  <h2><a href="post-generate-thumbnails.html">Generate AI Thumbnails Effortlessly</a></h2>
-  <div class="meta">July 6, 2025</div>
-  <p>Step-by-step guide: connect AI image tools to n8n to auto-create eye-catching thumbnails.</p>
-  <a class="read-more" href="post-generate-thumbnails.html">Read more →</a>
-</article>
-<article class="post">
-  <h2><a href="post-youtube-policy.html">YouTube’s New Policy: Bad News for Automation? What to Do Next</a></h2>
-  <div class="meta">July 16, 2025</div>
-  <p>YouTube is cracking down on AI-driven channels—but automation still works if you pivot smart. Learn how to adapt and thrive.</p>
-  <a class="read-more" href="post-youtube-policy.html">Read more →</a>
-</article>
-
-
-
-
-    <!-- More posts... -->
+    <div id="posts"></div>
   </main>
 
   <footer>
-    <p>&copy; 2025 MoonAI Space. All rights reserved. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+    <p>&copy; 2025 MoonAI Space. All rights reserved. 
+      <a href="privacy-policy.html">Privacy Policy</a> | 
+      <a href="terms-of-service.html">Terms of Service</a>
+    </p>
   </footer>
+
+  <script>
+    async function loadPosts() {
+      try {
+        const res = await fetch("post/index.json");
+        const posts = await res.json();
+
+        const container = document.getElementById("posts");
+        container.innerHTML = "";
+
+        posts.forEach(post => {
+          const article = document.createElement("article");
+          article.className = "post";
+          article.innerHTML = `
+            <h2><a href="post/${post.slug}.html">${post.title}</a></h2>
+            <div class="meta">${post.date}</div>
+            <p>${post.excerpt}</p>
+            <a class="read-more" href="post/${post.slug}.html">Read more →</a>
+          `;
+          container.appendChild(article);
+        });
+      } catch (err) {
+        document.getElementById("posts").innerHTML = "<p>⚠️ Could not load posts.</p>";
+        console.error("Error loading posts:", err);
+      }
+    }
+
+    loadPosts();
+  </script>
 </body>
 </html>
