@@ -38,7 +38,7 @@
   <main>
     <h1>MoonAI Blog</h1>
     <p>Latest tutorials, guides, and tips for AI + n8n automation.</p>
-    <div id="posts"></div>
+    <div id="posts">Loading posts…</div>
   </main>
 
   <footer>
@@ -51,11 +51,17 @@
   <script>
     async function loadPosts() {
       try {
-        const res = await fetch("post/index.json");
+        const res = await fetch("post/posts.json", {cache: "no-store"});
+        if (!res.ok) throw new Error("posts.json not found");
         const posts = await res.json();
 
         const container = document.getElementById("posts");
         container.innerHTML = "";
+
+        if (!Array.isArray(posts) || posts.length === 0) {
+          container.innerHTML = "<p>No posts yet.</p>";
+          return;
+        }
 
         posts.forEach(post => {
           const article = document.createElement("article");
@@ -63,7 +69,7 @@
           article.innerHTML = `
             <h2><a href="post/${post.slug}.html">${post.title}</a></h2>
             <div class="meta">${post.date}</div>
-            <p>${post.excerpt}</p>
+            <p>${post.excerpt || ""}</p>
             <a class="read-more" href="post/${post.slug}.html">Read more →</a>
           `;
           container.appendChild(article);
