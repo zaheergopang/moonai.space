@@ -1,5 +1,11 @@
 [
   {
+    "title": "```json",
+    "slug": "json",
+    "date": "Wed Sep 10 2025",
+    "excerpt": "```json\n{\n  \"title\": \"Unlocking Efficiency: The Benefits of Automation Using n8n\",\n  \"description\": \"Explore the transfo"
+  },
+  {
     "title": "Benefits of automation using n8n",
     "slug": "benefits-of-automation-using-n8n",
     "date": "Mon Sep 09 2025",
@@ -12,4 +18,3 @@
     "excerpt": "This is another example blog post..."
   }
 ]
-
