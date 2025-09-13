@@ -1,6 +1,9 @@
 [
   {
+    "title": "```json",
+    "slug": "json",
     "date": "Sun Sep 14 2025",
-    "path": "post/undefined.html"
+    "excerpt": "```json\n{\n  \"title\": \"The Future of AI Automation: Unlocking Potential with Tools Like n8n\",\n  \"description\": \"Explore h",
+    "path": "post/json.html"
   }
 ]
